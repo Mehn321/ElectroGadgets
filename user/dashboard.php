@@ -9,7 +9,7 @@
     <h1>Dashboard</h1>
 </header>
 <body>
-<div>
+    <div>
         <a href="dashboard.php">Dashboard</a><br>
         <a href="home.php">Home</a><br>
         <a href="products.php">Products</a><br>
