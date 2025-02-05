@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Admin</title>
+</head>
+<body>
+    <header>
+        <table>
+            <tr>
+                <td><img src="../assets/img/ElectroGadgets.png" alt="" width="100" height="100"></td>
+                <td><h1>ElectroGadgets</h1></td>
+            </tr>
+        </table>
+        <nav>
+                <a href="dashboard.html">Dashboard</a><br>
+                <a href="products.html">Manage Products</a><br>
+                <a href="orders.html">Manage Orders</a><br>
+        </nav>
+        <a href="login.html"><button>Logout</button></a>
+    </heade>
+    <hr>
+    <h2>Add Product</h2>
+    <form action="process_add_product.html" method="POST">
+        <label for="name">Product Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" required><br>
+        <label for="stock">Stock:</label><br>
+        <input type="number" id="stock" name="stock" required><br>
+        <label for="category">Category:</label><br>
+        <select id="category" name="category" required>
+            <option value="earbuds">Earbuds</option>
+            <option value="smartwatch">Smartwatch</option>
+            <option value="iphone">Smartphone">Headphones</option>
+            <option value="mac">Mac</option>
+            <option value="ipad">iPad</Table></option>
+            <option value="projector">Projector</option>
+            <option value="gaming_console">Gaming Console</option>
+            <option value="smarttv">Smart TV</option>
+        </select><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image_url" name="image_url" required><br><br>
+        <input type="submit" value="Add Product">
+    </form>
+</body>
