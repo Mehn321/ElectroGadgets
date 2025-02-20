@@ -4,39 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 </head>
 <body>
     <table>
         <tr>
-            <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-                <br><br><br><br><br><br><br><br>
-                <nav>
-                    <table width="130">
-                        <tr>
-                            <td>
-                                <a href="home.html">🏠 Home</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="products.html">🛍️ Products</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="contacts.html">📞 Contact-us</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="../admin/login.html">👤 Login</a>
-                            </td>
-                        </tr>
-                    </table>
-                </nav>
+            <td width="130" height="700" valign="top" class="sidebar">
+                <ul>
+                    <li>
+                        <a href="home.html">
+                            <i class='bx bx-home'></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class='bx bx-box'></i>
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contacts.html">
+                            <i class='bx bx-book'></i>
+                            <span>Contacts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../admin/login.html">
+                            <i class='bx bx-log-in'></i>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                </ul>
             </td>
-            <td>
-                <header>
+            <td width='1500' align="center">
+                <header class="main-header">
                     <table>
                         <tr>
                             <td><img src="../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
@@ -44,10 +47,18 @@
                         </tr>
                     </table>
                 </header>
-                </div>
-                <table cellpadding="20" align="center">
-                    <tr>
+                <table cellpadding="" align="center">
+                    <tr align="center">
                         <td align="center">
+                            <img src="../assets/img/elega1.webp" alt="" height="200" width="300">
+                            <img src="../assets/img/elega2.webp" alt="" height="200" width="300">
+                            <img src="../assets/img/elega3.webp" alt="" height="200" width="300">
+                            <img src="../assets/img/elega4.webp" alt="" height="200" width="300">
+                        <td>
+                    </tr>
+                    <tr align="center"> 
+                        <td align="center" class="services-section">
+                            
                             <p>ElectroGadgets is your premier destination for cutting-edge <br>
                                 electronics and gadgets. With over 5 years of experience, <br>
                                 we offer the latest iphones, laptops, smart home devices, <br>
@@ -66,12 +77,11 @@
                     </tr>
                 </table>
                 <hr>
-                <footer align="center">
-                    <p>&copy; 2024 ElectroGadgets by Nhem Day Aclo.</p>
+                <footer align="center" class="main-footer">
+                    <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
                 </footer>
             </td>
         </tr>
-
     </table>
 </body>
 </html>
