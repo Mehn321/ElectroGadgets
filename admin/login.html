@@ -3,43 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>ElectroGadgets - Admin Login</title>
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <table width="100%" height="400" align="center">
-        <tr>
-            <td align="center">
-                <table width="400" border="1" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
-                    <tr>
-                        <td align="center">
-                            <img src="../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100">
-                            <h1>Admin Login</h1>
-                            <form action="dashboard.html" method="POST">
-                                <table width="100%" cellpadding="8">
-                                    <tr>
-                                        <td>
-                                            <label for="email"><b>Username:</b></label><br>
-                                            <input type="text" id="email" name="email" required size="30">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="password"><b>Password:</b></label><br>
-                                            <input type="password" id="password" name="password" required size="30">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                            <button type="submit">Login</button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="../user/home.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+                <li><a href="../user/products.html"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="../user/contacts.html"><i class='bx bx-book'></i><span>Contacts</span></a></li>
+                <li><a href="login.html"><i class='bx bx-log-in'></i><span>Login</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
+                <h1>Admin Login</h1>
+                <div class="login-form">
+                    <form action="dashboard.html" method="POST">
+                        <div class="form-group">
+                            <label for="email"><b>Username:</b></label>
+                            <input type="text" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><b>Password:</b></label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="login-btn">Login</button>
+                    </form>
+                </div>
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>

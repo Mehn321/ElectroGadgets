@@ -3,93 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projector</title>
+    <title>ElectroGadgets - Projectors</title>
+    <link rel="stylesheet" href="../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-<table>
-        <tr>
-            <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-                <br><br><br><br><br><br><br><br>
-                <nav>
-                    <a href="../home.html">🏠 Home</a><br>
-                    <a href="../products.html">🛍️ Products</a><br>
-                    <a href="../contacts.html">📞 Contact-us</a><br>
-                    <a href="../../admin/login.html">👤 Login</a>
-                </nav>
-            </td>
-            <td width='1500' align="center">
-                <header>
-                    <table>
-                        <tr>
-                            <td><img src="../../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
-                            <td><h1>ElectroGadgets</h1></td>
-                        </tr>
-                    </table>
-                </header>
-    <h1 align="center">PROJECTOR</h1>
-        <table align="center">
-            <tbody>
-                <tr>
-                    <td>
-                        <form action="product_details/wanbodali1.html">
-                            <button type="submit">
-                                <img src="../../assets/img/dali1.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo Dali 1</p>
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="product_details/t2max.html">
-                            <button type="submit">
-                                <img src="../../assets/img/t2max.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo T2 Max</p>
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="product_details/t2ultra.html">
-                            <button type="submit">
-                                <img src="../../assets/img/t2ultra.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo T2 Ultra</p>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <form action="product_details/t3pro.html">
-                            <button type="submit">
-                                <img src="../../assets/img/t3pro.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo T3 Pro</p>
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="product_details/t6max.html">
-                            <button type="submit">
-                                <img src="../../assets/img/t6max.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo T6 Max</p>
-                            </button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="product_details/x1promax.html">
-                            <button type="submit">
-                                <img src="../../assets/img/x1.webp" alt="image" height="200px" width="200px"><br>
-                                <p>Wanbo X1 Pro Max</p>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    <hr>
-    <footer align="center">
-        <p>&copy; 2024 ElectroGadgets by Nhem Day Aclo.</p>
-    </footer>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="../home.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+                <li><a href="../products.html"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="../contacts.html"><i class='bx bx-book'></i><span>Contacts</span></a></li>
+                <li><a href="../../admin/login.html"><i class='bx bx-log-in'></i><span>Login</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
+                <h1>PROJECTOR</h1>
+                <div class="products products-category">
+                    <button class="product-btn" onclick="window.location.href='product_details/wanbodali1.html'">
+                        <img src="../../assets/img/dali1.webp" alt="Wanbo Dali 1" height="200px" width="200px">
+                        <span>Wanbo Dali 1</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/t2max.html'">
+                        <img src="../../assets/img/t2max.webp" alt="Wanbo T2 Max" height="200px" width="200px">
+                        <span>Wanbo T2 Max</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/t2ultra.html'">
+                        <img src="../../assets/img/t2ultra.webp" alt="Wanbo T2 Ultra" height="200px" width="200px">
+                        <span>Wanbo T2 Ultra</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/t3pro.html'">
+                        <img src="../../assets/img/t3pro.webp" alt="Wanbo T3 Pro" height="200px" width="200px">
+                        <span>Wanbo T3 Pro</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/t6max.html'">
+                        <img src="../../assets/img/t6max.webp" alt="Wanbo T6 Max" height="200px" width="200px">
+                        <span>Wanbo T6 Max</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/x1promax.html'">
+                        <img src="../../assets/img/x1.webp" alt="Wanbo X1 Pro Max" height="200px" width="200px">
+                        <span>Wanbo X1 Pro Max</span>
+                    </button>
+                </div>
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>
-

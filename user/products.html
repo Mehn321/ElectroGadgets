@@ -3,103 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ElectroGadgets</title>
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
 <body>
-    <table>
-        <tr>
-            <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-                <br><br><br><br><br><br><br><br>
-                <nav>
-                    <a href="home.html">🏠 Home</a><br>
-                    <a href="products.html">🛍️ Products</a><br>
-                    <a href="contacts.html">📞 Contact-us</a><br>
-                    <a href="../admin/login.html">👤 Login</a>
-                </nav>
-            </td>
-            <td width='1500' align="center">
-                <header>
-                    <table><!--  bgcolor="blue" width='100%' border="1" -->
-                        <tr>
-                            <td><img src="../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
-                            <td><h1>ElectroGadgets</h1></td>
-                        </tr>
-                    </table>
-                </header>
-    <h1>PRODUCTS</h1>
-    <div>
-        <table align="center">
-            <tbody>
-                <tr>
-                    <td>
-                        <div>
-                            <a href="product_categories/projector.html"><img src="../assets/img/projector.webp" alt="Projector" height="200px" width="200px">
-                                <p align="center">Projector</p>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <a href="product_categories/gamingconsole.html"><img src="../assets/img/ps5slim.webp" alt="PSP Console" height="200px" width="200px">
-                                <p align="center">Console</p>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <a href="product_categories/smarttv.html"><img src="../assets/img/crystaluhd.webp" alt="Smart TV" height="200px" width="200px">
-                                <p align="center">Smart TV</p>
-                            </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div>
-                            <a href="product_categories/ipad.html"><img src="../assets/img/ipad.webp" alt="Smart TV" height="200px" width="200px">
-                                <p align="center">iPad</p>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <div>
-                        <a href="product_categories/earbuds.html"><img src="../assets/img/airpods.webp" alt="AirPods" height="200px" width="200px">
-                            <p align="center">Earbuds</p>
-                        </a>
-                    </div>
-                    </td>
-                    <td>
-                    <div>
-                        <a href="product_categories/applewatch.html"><img src="../assets/img/apple_watch.webp" alt="Apple Watch" height="200px" width="200px">
-                        <p align="center">Apple Watch</p>
-                        </a>
-                    </div>
-                    </td>
-                    <td>
-                    <div>
-                        <a href="product_categories/iphones.html"><img src="../assets/img/iphones.webp" alt="iPhones" height="200px" width="200px">
-                            <p align="center">iPhones</p>
-                        </a>
-                    </div>
-                    </td>
-                    <td>
-                        <div>
-                            <a href="product_categories/mac.html"><img src="../assets/img/macbook.webp" alt="MacBook" height="200px" width="200px">
-                                <p align="center">Mac</p>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="home.html">
+                        <i class='bx bx-home'></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="products.html">
+                        <i class='bx bx-box'></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contacts.html">
+                        <i class='bx bx-book'></i>
+                        <span>Contacts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin/login.html">
+                        <i class='bx bx-log-in'></i>
+                        <span>Login</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
+                <h1>PRODUCTS</h1>
+                <div class="products">
+                    <button class="product-btn" onclick="window.location.href='product_categories/projector.html'">
+                        <img src="../assets/img/projector.webp" alt="Projector" height="200px" width="200px">
+                        <span>Projector</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/gamingconsole.html'">
+                        <img src="../assets/img/ps5slim.webp" alt="PSP Console" height="200px" width="200px">
+                        <span>Console</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/smarttv.html'">
+                        <img src="../assets/img/crystaluhd.webp" alt="Smart TV" height="200px" width="200px">
+                        <span>Smart TV</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/ipad.html'">
+                        <img src="../assets/img/ipad.webp" alt="iPad" height="200px" width="200px">
+                        <span>iPad</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/earbuds.html'">
+                        <img src="../assets/img/airpods.webp" alt="AirPods" height="200px" width="200px">
+                        <span>Earbuds</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/applewatch.html'">
+                        <img src="../assets/img/apple_watch.webp" alt="Apple Watch" height="200px" width="200px">
+                        <span>Apple Watch</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/iphones.html'">
+                        <img src="../assets/img/iphones.webp" alt="iPhones" height="200px" width="200px">
+                        <span>iPhones</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_categories/mac.html'">
+                        <img src="../assets/img/macbook.webp" alt="MacBook" height="200px" width="200px">
+                        <span>Mac</span>
+                    </button>
+                </div>
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
     </div>
-    <hr>
-    <footer align="center">
-        <p>&copy; 2024 ElectroGadgets by Nhem Day Aclo.</p>
-    </footer>
-            </td>
-        </tr>
-    </table>
 </body>
 </html>

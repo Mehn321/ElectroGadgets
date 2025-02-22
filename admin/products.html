@@ -3,382 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Admin</title>
+    <title>ElectroGadgets - Admin Products</title>
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <table>
-        <tr>
-            <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-                <br><br><br><br><br><br><br><br>
-                <nav>
-                    <a href="dashboard.html">📊 Dashboard</a><br>
-                    <a href="products.html">🛍️Products</a><br>
-                    <a href="reports.html">📈Reports</a><br>
-                    <a href="../user/home.html"><button>Logout</button></a>
-                </nav>
-            </td>
-            <td width='1500' align="center" valign="top">
-                <header>
-                    <table>
-                        
-                        <tr>
-                            <td><img src="../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
-                            <td><h1>ElectroGadgets</h1></td>
-                        </tr>
-                    </table>
-                </header>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="dashboard.html"><i class='bx bx-grid-alt'></i><span>Dashboard</span></a></li>
+                <li><a href="products.html"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="reports.html"><i class='bx bx-line-chart'></i><span>Reports</span></a></li>
+                <li><a href="../user/home.html"><i class='bx bx-log-out'></i><span>Logout</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
                 <br><br>
-    <div>
-        <a href="add_product.html"><button>Add Product</button></a>
+                <div class="add-product">
+                    <a href="add_product.html"><button class="blue-btn">Add Product</button></a>
+                </div>
+                <div class="products-list">
+                <section class="product-section">
+                    <h2 align="center">Earbuds</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>1</td>
+                                <td><img src="../assets/img/airpods4.webp" alt="" width="50" height="50"></td>
+                                <td>Apple AirPods 4</td>
+                                <td>₱10,690</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><img src="../assets/img/airpods2pro.webp" alt="" width="50" height="50"></td>
+                                <td>Apple AirPods Pro 2</td>
+                                <td>₱11,990</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><img src="../assets/img/beatssolobuds.webp" alt="" width="50" height="50"></td>
+                                <td>Beats Solo Buds</td>
+                                <td>₱4,040</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">Smart Watches</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>4</td>
+                                <td><img src="../assets/img/appleWatchSE2nd.webp" alt="" width="50" height="50"></td>
+                                <td>Apple Watch SE 2nd Gen</td>
+                                <td>₱13,890</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><img src="../assets/img/appleWatchSeries10.webp" alt="" width="50" height="50"></td>
+                                <td>Apple Watch Series 10</td>
+                                <td>₱24,190</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><img src="../assets/img/appleWatchultra2.webp" alt="" width="50" height="50"></td>
+                                <td>Apple Watch Ultra 2</td>
+                                <td>₱51,990</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">iPhones</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>7</td>
+                                <td><img src="../assets/img/iphone13.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPhone 13</td>
+                                <td>₱28,190</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><img src="../assets/img/iphone16Pro.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPhone 16 Pro</td>
+                                <td>₱61,890</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><img src="../assets/img/iphone14plus.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPhone 14 Plus</td>
+                                <td>₱38,290</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">Mac's</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>10</td>
+                                <td><img src="../assets/img/macbookpro.webp" alt="" width="50" height="50"></td>
+                                <td>Apple MacBook Pro M3</td>
+                                <td>₱100,790</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td><img src="../assets/img/macmini.webp" alt="" width="50" height="50"></td>
+                                <td>Apple Mac Mini M2 Pro</td>
+                                <td>₱76,790</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td><img src="../assets/img/macbookair.webp" alt="" width="50" height="50"></td>
+                                <td>Apple MacBook Air M3</td>
+                                <td>₱78,890</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">iPads</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>13</td>
+                                <td><img src="../assets/img/ipadpro11inch.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPad Pro 11-inch</td>
+                                <td>₱83,490</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td><img src="../assets/img/ipadair13inch.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPad Air 13-inch</td>
+                                <td>₱48,890</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td><img src="../assets/img/ipadmini7th.webp" alt="" width="50" height="50"></td>
+                                <td>Apple iPad Mini 7th Gen</td>
+                                <td>₱33,990</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">Projectors</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>16</td>
+                                <td><img src="../assets/img/dali1.webp" alt="" width="50" height="50"></td>
+                                <td>Wanbo Dali 1</td>
+                                <td>₱6,119</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td><img src="../assets/img/t2max.webp" alt="" width="50" height="50"></td>
+                                <td>Wanbo T2 Max</td>
+                                <td>₱8,099</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>18</td>
+                                <td><img src="../assets/img/t2ultra.webp" alt="" width="50" height="50"></td>
+                                <td>Wanbo T2 Ultra</td>
+                                <td>₱9,799</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="product-section">
+                    <h2 align="center">Gaming Consoles</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>19</td>
+                                <td><img src="../assets/img/msiclaw.webp" alt="" width="50" height="50"></td>
+                                <td>MSI Claw A1M</td>
+                                <td>₱37,995</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>20</td>
+                                <td><img src="../assets/img/ps5slim.webp" alt="" width="50" height="50"></td>
+                                <td>PS5 Slim</td>
+                                <td>₱8,099</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>21</td>
+                                <td><img src="../assets/img/switch.webp" alt="" width="50" height="50"></td>
+                                <td>Nintendo Switch OLED</td>
+                                <td>₱15,000</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="product-section">
+                    <h2 align="center">Smart TVs</h2>
+                    <table class="product-table" border="1" cellpadding="10" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr>
+                                <td>22</td>
+                                <td><img src="../assets/img/nvision.webp" alt="" width="50" height="50"></td>
+                                <td>Nvision 32"/43" Smart TV</td>
+                                <td>₱6,399</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td><img src="../assets/img/xiaomismarttva2025.webp" alt="" width="50" height="50"></td>
+                                <td>Xiaomi Smart TV A2025</td>
+                                <td>₱7,695</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td><img src="../assets/img/crystaluhd.webp" alt="" width="50" height="50"></td>
+                                <td>Samsung Crystal UHD 55"</td>
+                                <td>₱22,999</td>
+                                <td>50</td>
+                                <td><button class='blue-btn'>Update</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                </div
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
     </div>
-        <section>
-            <h2 align="center">Earbuds</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>1</td>
-                        <td><img src="../assets/img/airpods4.webp" alt="" width="50" height="50"></td>
-                        <td>Apple AirPods 4</td>
-                        <td>₱10,690</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><img src="../assets/img/airpods2pro.webp" alt="" width="50" height="50"></td>
-                        <td>Apple AirPods Pro 2</td>
-                        <td>₱11,990</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><img src="../assets/img/beatssolobuds.webp" alt="" width="50" height="50"></td>
-                        <td>Beats Solo Buds</td>
-                        <td>₱4,040</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">Smart Watches</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>4</td>
-                        <td><img src="../assets/img/appleWatchSE2nd.webp" alt="" width="50" height="50"></td>
-                        <td>Apple Watch SE 2nd Gen</td>
-                        <td>₱13,890</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><img src="../assets/img/appleWatchSeries10.webp" alt="" width="50" height="50"></td>
-                        <td>Apple Watch Series 10</td>
-                        <td>₱24,190</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td><img src="../assets/img/appleWatchultra2.webp" alt="" width="50" height="50"></td>
-                        <td>Apple Watch Ultra 2</td>
-                        <td>₱51,990</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">iPhones</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>7</td>
-                        <td><img src="../assets/img/iphone13.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPhone 13</td>
-                        <td>₱28,190</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td><img src="../assets/img/iphone16Pro.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPhone 16 Pro</td>
-                        <td>₱61,890</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td><img src="../assets/img/iphone14plus.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPhone 14 Plus</td>
-                        <td>₱38,290</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">Mac's</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>10</td>
-                        <td><img src="../assets/img/macbookpro.webp" alt="" width="50" height="50"></td>
-                        <td>Apple MacBook Pro M3</td>
-                        <td>₱100,790</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td><img src="../assets/img/macmini.webp" alt="" width="50" height="50"></td>
-                        <td>Apple Mac Mini M2 Pro</td>
-                        <td>₱76,790</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td><img src="../assets/img/macbookair.webp" alt="" width="50" height="50"></td>
-                        <td>Apple MacBook Air M3</td>
-                        <td>₱78,890</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">iPads</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>13</td>
-                        <td><img src="../assets/img/ipadpro11inch.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPad Pro 11-inch</td>
-                        <td>₱83,490</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>14</td>
-                        <td><img src="../assets/img/ipadair13inch.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPad Air 13-inch</td>
-                        <td>₱48,890</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td><img src="../assets/img/ipadmini7th.webp" alt="" width="50" height="50"></td>
-                        <td>Apple iPad Mini 7th Gen</td>
-                        <td>₱33,990</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">Projectors</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>16</td>
-                        <td><img src="../assets/img/dali1.webp" alt="" width="50" height="50"></td>
-                        <td>Wanbo Dali 1</td>
-                        <td>₱6,119</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td><img src="../assets/img/t2max.webp" alt="" width="50" height="50"></td>
-                        <td>Wanbo T2 Max</td>
-                        <td>₱8,099</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>18</td>
-                        <td><img src="../assets/img/t2ultra.webp" alt="" width="50" height="50"></td>
-                        <td>Wanbo T2 Ultra</td>
-                        <td>₱9,799</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">Gaming Consoles</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>19</td>
-                        <td><img src="../assets/img/msiclaw.webp" alt="" width="50" height="50"></td>
-                        <td>MSI Claw A1M</td>
-                        <td>₱37,995</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>20</td>
-                        <td><img src="../assets/img/ps5slim.webp" alt="" width="50" height="50"></td>
-                        <td>PS5 Slim</td>
-                        <td>₱8,099</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>21</td>
-                        <td><img src="../assets/img/switch.webp" alt="" width="50" height="50"></td>
-                        <td>Nintendo Switch OLED</td>
-                        <td>₱15,000</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <br>
-        <section>
-            <h2 align="center">Smart TVs</h2>
-            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr bgcolor="#f0f0f0">
-                        <th>Product ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody align="center">
-                    <tr>
-                        <td>22</td>
-                        <td><img src="../assets/img/nvision.webp" alt="" width="50" height="50"></td>
-                        <td>Nvision 32"/43" Smart TV</td>
-                        <td>₱6,399</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>23</td>
-                        <td><img src="../assets/img/xiaomismarttva2025.webp" alt="" width="50" height="50"></td>
-                        <td>Xiaomi Smart TV A2025</td>
-                        <td>₱7,695</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                    <tr>
-                        <td>24</td>
-                        <td><img src="../assets/img/crystaluhd.webp" alt="" width="50" height="50"></td>
-                        <td>Samsung Crystal UHD 55"</td>
-                        <td>₱22,999</td>
-                        <td>50</td>
-                        <td><button>Update</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    <hr>
-    <footer align="center">
-        <p>&copy; 2024 ElectroGadgets by Nhem Day Aclo.</p>
-    </footer>
-            </td>
-        </tr>
-    </table>
 </body>
 </html>

@@ -3,68 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhones</title>
+    <title>ElectroGadgets - iPhones</title>
+    <link rel="stylesheet" href="../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <table>
-        <tr>
-            <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-                <br><br><br><br><br><br><br><br>
-                <nav>
-                    <a href="../home.html">🏠 Home</a><br>
-                    <a href="../products.html">🛍️ Products</a><br>
-                    <a href="../contacts.html">📞 Contact-us</a><br>
-                    <a href="../../admin/login.html">👤 Login</a>
-                </nav>
-            </td>
-            <td width='1500' align="center">
-                <header>
-                    <table>
-                        <tr>
-                            <td><img src="../../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
-                            <td><h1>ElectroGadgets</h1></td>
-                        </tr>
-                    </table>
-                </header>
-                    <div>
-                        <a href="product_details/iphone13.html">
-                            <button type="button" name="product" value="Apple iPhone 13">
-                                <img src="../../assets/img/iphone13.webp" alt="image" height="200px" width="200px"><br>iPhone 13
-                            </button>
-                        </a>
-                        <a href="product_details/iphone16pro.html">
-                            <button type="button" name="product" value="Apple iPhone 16 Pro">
-                                <img src="../../assets/img/iphone16Pro.webp" alt="image" height="200px" width="200px"><br>iPhone 16 Pro
-                            </button>
-                        </a>
-                        <a href="product_details/iphone14plus.html">
-                            <button type="button" name="product" value="Apple iPhone 14 Plus">
-                                <img src="../../assets/img/iphone14plus.webp" alt="image" height="200px" width="200px"><br>iPhone 14 Plus
-                            </button>
-                        </a><br>
-                        <a href="product_details/iphone12.html">
-                            <button type="button" name="product" value="Apple iPhone 12">
-                                <img src="../../assets/img/iphone12.webp" alt="image" height="200px" width="200px"><br>iPhone 12
-                            </button>
-                        </a>
-                        <a href="product_details/iphone11.html">
-                            <button type="button" name="product" value="Apple iPhone 11">
-                                <img src="../../assets/img/iphone11.webp" alt="image" height="200px" width="200px"><br>iPhone 11
-                            </button>
-                        </a>
-                        <a href="product_details/iphone15.html">
-                            <button type="button" name="product" value="Apple iPhone 15">
-                                <img src="../../assets/img/iphone15.webp" alt="image" height="200px" width="200px"><br>iPhone 15
-                            </button>
-                        </a>
-                    </div>
-                <hr>
-                <footer align="center">
-                    <p>&copy; 2024 ElectroGadgets by Nhem Day Aclo.</p>
-                </footer>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="../home.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+                <li><a href="../products.html"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="../contacts.html"><i class='bx bx-book'></i><span>Contacts</span></a></li>
+                <li><a href="../../admin/login.html"><i class='bx bx-log-in'></i><span>Login</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
+                <h1>iPHONES</h1>
+                <div class="products products-category">
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone11.html'">
+                        <img src="../../assets/img/iphone11.webp" alt="iPhone 11" height="200px" width="200px">
+                        <span>iPhone 11</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone12.html'">
+                        <img src="../../assets/img/iphone12.webp" alt="iPhone 12" height="200px" width="200px">
+                        <span>iPhone 12</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone13.html'">
+                        <img src="../../assets/img/iphone13.webp" alt="iPhone 13" height="200px" width="200px">
+                        <span>iPhone 13</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone14plus.html'">
+                        <img src="../../assets/img/iphone14plus.webp" alt="iPhone 14 Plus" height="200px" width="200px">
+                        <span>iPhone 14 Plus</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone15.html'">
+                        <img src="../../assets/img/iphone15.webp" alt="iPhone 15" height="200px" width="200px">
+                        <span>iPhone 15</span>
+                    </button>
+
+                    <button class="product-btn" onclick="window.location.href='product_details/iphone16pro.html'">
+                        <img src="../../assets/img/iphone16Pro.webp" alt="iPhone 16 Pro" height="200px" width="200px">
+                        <span>iPhone 16 Pro</span>
+                    </button>
+                </div>
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>
-
