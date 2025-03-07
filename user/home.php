@@ -168,7 +168,9 @@
                 <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
             </div>
         </footer> -->
-        <?php include '../components\Footer.php'; ?>
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/ecommerce/components/Footer.php';
+        ?>
     </div>
     </div>
 </body>

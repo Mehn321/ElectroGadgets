@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="../assets/css/footer.css">
+
+<link rel="stylesheet" href="/ecommerce/assets/css/footer.css">
+
 <!-- Add this in your HTML head section -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 

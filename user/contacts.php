@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 <body>
     <div class="container">
@@ -89,9 +90,9 @@
                     </div>
                 </div>
         </div>
-        <footer class="main-footer" align="center">
-            <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
-        </footer>
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/ecommerce/components/Footer.php';
+        ?>
     </div>
 </div>
 </body>
