@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 16 Pro Details</title>
+    <link rel="stylesheet" href="../../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="../../home.php"><i class='bx bx-home'></i><span>Home</span></a></li>
+                <li><a href="../../products.php"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="../../contacts.php"><i class='bx bx-book'></i><span>Contacts</span></a></li>
+                <li><a href="../../../admin/login.php"><i class='bx bx-log-in'></i><span>Login</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../../../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
+            </header>
+            <div class="main-content">
+                <div class="product-details">
+                    <table border="1" cellspacing="0" align="center" bgcolor="white" class="mtb product-details">
+                        <tr>
+                            <td class="product-image" align="center">
+                                <img src="../../../assets/img/iphone16Pro.webp" alt="iPhone 16 Pro" height="300px" width="300px">
+                                <h2>iPhone 16 Pro</h2>
+                            </td>
+                            <td class="description">
+                                <h3>Product Description:</h3>
+                                <p>The iPhone 16 Pro sets new standards with its A18 Pro chip, advanced camera system, and 
+                                ProMotion display. Experience unprecedented power and professional-grade capabilities.
+                                <br><br>
+                                <h4>Product Specifications:</h4>
+                                <ul>
+                                    <li>A18 Pro chip with Neural Engine</li>
+                                    <li>6.7-inch ProMotion XDR display</li>
+                                    <li>Pro camera system with 48MP main</li>
+                                    <li>Up to 1TB storage</li>
+                                    <li>5G Advanced</li>
+                                    <li>Titanium design</li>
+                                    <li>Action button</li>
+                                </ul>
+                                </p>
+                                <br>
+                                <h2>Price: 89,999.99</h2>
+                                <p>Stock: 20</p>
+                                <form action="../../orders.php">
+                                    <input type="hidden" name="product" value="iPhone 16 Pro">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="5" value="1"><br><br>
+                                    <button class="blue-btn" type="submit">Order Now</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <footer class="main-footer" align="center">
+                <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

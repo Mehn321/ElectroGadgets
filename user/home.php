@@ -31,25 +31,25 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="home.html">
+                    <a href="home.php">
                         <i class='bx bx-home'></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="products.html">
+                    <a href="products.php">
                         <i class='bx bx-box'></i>
                         <span>Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="contacts.html">
+                    <a href="contacts.php">
                         <i class='bx bx-book'></i>
                         <span>Contacts</span>
                     </a>
                 </li>
                 <li>
-                    <a href="../admin/login.html">
+                    <a href="../admin/login.php">
                         <i class='bx bx-log-in'></i>
                         <span>Login</span>
                     </a>
@@ -168,7 +168,7 @@
                 <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
             </div>
         </footer> -->
-        <?php include '../components\Footer.html'; ?>
+        <?php include '../components\Footer.php'; ?>
     </div>
     </div>
 </body>
