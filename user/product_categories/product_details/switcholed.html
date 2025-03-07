@@ -4,70 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nintendo Switch OLED Details</title>
+    <link rel="stylesheet" href="../../../assets/css/sidebar.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../../../assets/css/style.css">
 </head>
 <body>
-<table>
-    <tr>
-        <td width="130" height="700" valign="top" bgcolor="#f0f0f0">
-            <br><br><br><br><br><br><br><br>
-            <nav>
-                <a href="../../home.html">🏠 Home</a><br>
-                <a href="../../products.html">🛍️ Products</a><br>
-                <a href="../../contacts.html">📞 Contact-us</a><br>
-                <a href="../../../admin/login.html">👤 Login</a>
-            </nav>
-        </td >
-        <td width='1500' align="center">
-            <header>
-                <table>
-                    <tr>
-                        <td><img src="../../../assets/img/ElectroGadgets.png" alt="Logo" width="100" height="100"></td>
-                        <td><h1>ElectroGadgets</h1></td>
-                    </tr>
-                </table>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="../../home.html"><i class='bx bx-home'></i><span>Home</span></a></li>
+                <li><a href="../../products.html"><i class='bx bx-box'></i><span>Products</span></a></li>
+                <li><a href="../../contacts.html"><i class='bx bx-book'></i><span>Contacts</span></a></li>
+                <li><a href="../../../admin/login.html"><i class='bx bx-log-in'></i><span>Login</span></a></li>
+            </ul>
+        </div>
+        <div class="rightside">
+            <header class="main-header">
+                <div class="logo-container">
+                    <img src="../../../assets/img/ElectroGadgets.png" width="70" alt="Logo">
+                    <h1>ElectroGadgets</h1>
+                </div>
             </header>
-            <br><br><br>
+            <div class="main-content">
                 <div class="product-details">
-                    <table border="1" align="center" width="1200" bgcolor="white">
+                    <table border="1" cellspacing="0" align="center" bgcolor="white" class="mtb product-details">
                         <tr>
-                            <td width="400" align="center">
-                                <img src="../../../assets/img/switch.webp" alt="Nintendo Switch OLED" height="300px" width="300px">
+                            <td class="product-image" align="center">
+                                <img src="../../../assets/img/switcholed.webp" alt="Nintendo Switch OLED" height="300px" width="300px">
                                 <h2>Nintendo Switch OLED</h2>
                             </td>
-                            <td width="800" valign="top">
+                            <td class="description">
                                 <h3>Product Description:</h3>
                                 <p>The Nintendo Switch OLED Model features a vibrant 7-inch OLED screen, enhanced audio, 
-                                and a wider adjustable stand for the ultimate portable gaming experience.
+                                and a wider adjustable stand for more comfortable tabletop gaming.
                                 <br><br>
-                                Product Specifications:
+                                <h4>Product Specifications:</h4>
                                 <ul>
                                     <li>7-inch OLED screen</li>
                                     <li>64GB internal storage</li>
-                                    <li>Enhanced audio system</li>
+                                    <li>Enhanced audio</li>
                                     <li>Wide adjustable stand</li>
-                                    <li>Wired LAN port in dock</li>
-                                    <li>Up to 9 hours battery life</li>
-                                    <li>Joy-Con controllers included</li>
+                                    <li>Wired LAN port</li>
+                                    <li>TV, Tabletop, and Handheld modes</li>
+                                    <li>Improved kickstand design</li>
                                 </ul>
                                 </p>
+                                <br>
                                 <h2>Price: 19,999.99</h2>
-                                <p>Stock: 40</p>
+                                <p>Stock: 30</p>
                                 <form action="../../orders.html">
                                     <input type="hidden" name="product" value="Nintendo Switch OLED">
                                     <label for="quantity">Quantity:</label>
                                     <input type="number" id="quantity" name="quantity" min="1" max="5" value="1"><br><br>
-                                    <button type="submit">Order Now</button>
+                                    <button class="blue-btn" type="submit">Order Now</button>
                                 </form>
                             </td>
                         </tr>
                     </table>
                 </div>
-            <hr>
-            <footer align="center">
+            </div>
+            <footer class="main-footer" align="center">
                 <p>© 2024 ElectroGadgets by Nhem Day Aclo.</p>
             </footer>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
 </body>
 </html>
