@@ -20,12 +20,8 @@
             </ul>
         </div>
         <div class="rightside">
-            <header class="main-header">
-                <div class="logo-container">
-                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
-                    <h1>ElectroGadgets</h1>
-                </div>
-            </header>
+            <?php include '../components/header.php'; ?>
+
             <div class="main-content">
                 <div class="welcome-banner">
                     <h1>Welcome Back, Admin!</h1>

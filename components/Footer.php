@@ -10,9 +10,9 @@
 <div class="footer-section">
     <h3>Customer Service</h3>
     <ul>
-    <li><a href="/help">Help Centre</a></li>
-    <li><a href="/shipping">Free Shipping</a></li>
-    <li><a href="/contact">Contact Us</a></li>
+    <li><a href="/ecommerce/user/contacts.php">Help Centre</a></li>
+    <li><a href="">Free Shipping</a></li>
+    <li><a href="/ecommerce/user/contacts.php">Contact Us</a></li>
     </ul>
 </div>
 
@@ -20,9 +20,9 @@
 <div class="footer-section">
     <h3>About Shopee</h3>
     <ul>
-    <li><a href="/about">About Us</a></li>
-    <li><a href="/blog">Shopee Blog</a></li>
-    <li><a href="/media">Media Contact</a></li>
+    <li><a href="/ecommerce/user/home.php">About Us</a></li>
+    <li><a href="/ecommerce/user/contacts.php">Shopee Blog</a></li>
+    <li><a href="/ecommerce/user/contacts.php">Media Contact</a></li>
     </ul>
 </div>
 
@@ -30,9 +30,9 @@
 <div class="footer-section">
     <h3>Payment Methods</h3>
     <ul>
-    <li><a href="/shopeepay">Gcash</a></li>
-    <li><a href="/coins">Pay Maya</a></li>
-    <li><a href="/coins">Cash On Delivery</a></li>
+    <li><a href="">Gcash</a></li>
+    <li><a href="">Pay Maya</a></li>
+    <li><a href="">Cash On Delivery</a></li>
     </ul>
 </div>
 
@@ -40,10 +40,10 @@
 <div class="footer-section">
     <h3>Follow Us</h3>
     <div class="social-links">
-    <a href="https://facebook.com/shopee" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="https://instagram.com/shopee" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://twitter.com/shopee" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://linkedin.com/company/shopee" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100044561492490" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com/nhemday" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/nhemday" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://linkedin.com/company/nhemday" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
 </div>
 </div>

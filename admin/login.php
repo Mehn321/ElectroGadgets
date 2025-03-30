@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-
+    <style>
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-container input {
+            width: 100%;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #666;
+            font-size: 20px;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -20,12 +37,9 @@
             </ul>
         </div>
         <div class="rightside">
-            <header class="main-header">
-                <div class="logo-container">
-                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
-                    <h1>ElectroGadgets</h1>
-                </div>
-            </header>
+            <?php include '../components/header.php'; ?>
+            <br><br><br>
+
             <div class="main-content">
                 <h1>Admin Login</h1>
                 <div class="login-form">
@@ -36,16 +50,43 @@
                         </div>
                         <div class="form-group">
                             <label for="password"><b>Password:</b></label>
-                            <input type="password" id="password" name="password" required>
+                            <div class="password-container">
+                                <input type="password" id="password" name="password" required>
+                                <i class='bx bx-hide password-toggle' id="togglePassword"></i>
+                            </div>
                         </div>
                         <button type="submit" class="login-btn">Login</button>
                     </form>
                 </div>
             </div>
+            <br><br><br>
         <?php
         include $_SERVER['DOCUMENT_ROOT'] . '/ecommerce/components/Footer.php';
         ?>
         </div>
     </div>
+    
+    <!-- Inline JavaScript as a fallback -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function() {
+                    // Toggle the password visibility
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        togglePassword.classList.remove('bx-hide');
+                        togglePassword.classList.add('bx-show');
+                    } else {
+                        passwordInput.type = 'password';
+                        togglePassword.classList.remove('bx-show');
+                        togglePassword.classList.add('bx-hide');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

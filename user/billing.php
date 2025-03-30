@@ -11,21 +11,11 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li><a href="home.php"><i class='bx bx-home'></i><span>Home</span></a></li>
-                <li><a href="products.php"><i class='bx bx-box'></i><span>Products</span></a></li>
-                <li><a href="contacts.php"><i class='bx bx-book'></i><span>Contacts</span></a></li>
-                <li><a href="../admin/login.php"><i class='bx bx-log-in'></i><span>Login</span></a></li>
-            </ul>
-        </div>
+        <?php include '../components/sidebar.php'; ?>
+
         <div class="rightside">
-            <header class="main-header">
-                <div class="logo-container">
-                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
-                    <h1>ElectroGadgets</h1>
-                </div>
-            </header>
+            <?php include '../components/header.php'; ?>
+
             <div class="main-content">
                 <form action="" method="post">
                     <h2>Billing Information</h2>
@@ -196,26 +186,37 @@
                         <h3>Personal Information</h3>
                         <div class="form-group">
                             <label for="firstname">First Name:</label>
-                            <input type="text" id="firstname" name="firstname" required>
+                            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last Name:</label>
-                            <input type="text" id="lastname" name="lastname" required>
+                            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" required>
                         </div>
                         <div class="form-group">
-                            <label for="suffix">Suffix (Jr., Sr., III, etc.):</label>
-                            <input type="text" id="suffix" name="suffix">
+                            <label class="form-label" for="suffix">Suffix:</label>
+                            <select class="form-select" id="suffix" name="suffix">
+                                <option value="">Select suffix (optional)</option>
+                                <option value="Jr.">Jr.</option>
+                                <option value="Sr.">Sr.</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" placeholder="example@email.com" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="xxx-xxx-xxxx" required>
+                            <input type="tel" id="phone" name="phone" placeholder="09123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP/Postal Code:</label>
+                            <input type="text" id="zip" name="zip" placeholder="1234" required>
                         </div>
                     </div>
-
                     <!-- Section 3: Payment Information -->
                     <div class="billing-section payment-info">
                         <h3>Payment Information</h3>
@@ -263,4 +264,156 @@
         </div>
     </div>
 </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.form-group input').after('<div class="validation-message"></div>');
+    $('head').append(`
+        <style>
+            .form-group {
+                position: relative;
+            }
+            .validation-message {
+                position: absolute;
+                background: #ff4444;
+                color: white;
+                padding: 8px 15px;
+                border-radius: 15px;
+                font-size: 12px;
+                display: none;
+                bottom: 60%;
+                right: 0;
+                margin-bottom: 5px;
+                z-index: 100;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                max-width: 200px;
+                animation: fadeIn 0.3s ease-in;
+            }
+    
+            .validation-message:before {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 15px;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid #ff4444;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+    `);
+
+    function validateInput(input) {        const value = input.val();
+        const id = input.attr('id');
+        
+        switch(id) {
+            case 'firstname':
+            case 'lastname':
+                if(!/^[a-zA-Z\s]{2,30}$/.test(value)) {
+                    showError(input, "Letters only, 2-30 characters");
+                }
+                break;
+            case 'phone':
+                if(!/^09\d{9}$/.test(value)) {
+                    showError(input, "Format: 09XXXXXXXXX");
+                }
+                break;
+            case 'email':
+                if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    showError(input, "Enter valid email");
+                }
+                break;
+            case 'zip':
+                if(!/^\d{4}$/.test(value)) {
+                    showError(input, "Enter 4-digit code");
+                }
+                break;
+        }
+    }
+
+    function showError(input, message) {
+        input.addClass('error');
+        input.next('.validation-message').text(message).show();
+    }
+
+    $('input').on('input', function() {
+        $(this).removeClass('error');
+        $(this).next('.validation-message').hide();
+    });
+
+    $('input').blur(function() {
+        validateInput($(this));
+    });
+
+    $('#cardnumber').on('input', function() {
+        let value = $(this).val().replace(/\s/g, '');
+        if (!/^\d{16}$/.test(value)) {
+            showError($(this), "Enter valid 16-digit card number");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+        // Format with spaces after every 4 digits
+        $(this).val(value.replace(/(\d{4})/g, '$1 ').trim());
+    });
+
+    $('#transaction_num').on('input', function() {
+        if (!/^\d{10}$/.test($(this).val())) {
+            showError($(this), "Enter 10-digit transaction number");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+    });
+
+    $('#total').on('input', function() {
+        if (!/^\d+(\.\d{2})?$/.test($(this).val())) {
+            showError($(this), "Enter valid amount (e.g., 1000.00)");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+    });
+
+    $('#expdate').on('change', function() {
+        let selected = new Date($(this).val());
+        let today = new Date();
+        if (selected < today) {
+            showError($(this), "Card has expired");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+    });
+
+    $('#country').on('change', function() {
+        if ($(this).val() === '') {
+            showError($(this), "Select a country");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+    });
+
+        // Add this to your existing jQuery validation code
+    $('#address').on('input', function() {
+        if ($(this).val().length < 10) {
+            showError($(this), "Enter complete address with house number and street name");
+        } else if (!/^[a-zA-Z0-9\s,.-]+$/.test($(this).val())) {
+            showError($(this), "Use only letters, numbers, and basic punctuation");
+        } else {
+            $(this).removeClass('error');
+            $(this).next('.validation-message').hide();
+        }
+    });
+
+});
+
+
+</script>
 </html>

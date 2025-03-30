@@ -11,21 +11,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li><a href="home.php"><i class='bx bx-home'></i><span>Home</span></a></li>
-                <li><a href="products.php"><i class='bx bx-box'></i><span>Products</span></a></li>
-                <li><a href="contacts.php"><i class='bx bx-book'></i><span>Contacts</span></a></li>
-                <li><a href="../admin/login.php"><i class='bx bx-log-in'></i><span>Login</span></a></li>
-            </ul>
-        </div>
+        <?php include '../components/sidebar.php'; ?>
+
         <div class="rightside">
-            <header class="main-header">
-                <div class="logo-container">
-                    <img src="../assets/img/ElectroGadgets.png" width="70" alt="Logo">
-                    <h1>ElectroGadgets</h1>
-                </div>
-            </header>
+            <?php include '../components/header.php'; ?>
             <div class="main-content">
                 <h2>Shopping Orders</h2>
                 <div class="products-list">
