@@ -1,3 +1,8 @@
+<?php
+    require_once '../database/database.php';
+    $dataconn = new database();
+    $conn = $dataconn->getConnection();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,46 +23,25 @@
             <div class="main-content">
                 <h1>PRODUCTS</h1>
                 <div class="products">
+                    <?php
+                        $sql = "SELECT 
+                                category.category_name, 
+                                MIN(products.image_path) AS image_path
+                                FROM products
+                                INNER JOIN category ON products.category_id = category.category_id
+                                GROUP BY category.category_id, category.category_name;";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            $category_name = $row['category_name'];
+                            $image_path = $row['image_path'];
 
-                    <button class="product-btn" onclick="window.location.href='product_categories/gamingconsole.php'">
-                        <img src="../assets/img/ps5slim.webp" alt="PSP Console" height="200px" width="200px">
-                        <span>Console</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/projector.php'">
-                        <img src="../assets/img/projector.webp" alt="Projector" height="200px" width="200px">
-                        <span>Projector</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/smarttv.php'">
-                        <img src="../assets/img/crystaluhd.webp" alt="Smart TV" height="200px" width="200px">
-                        <span>Smart TV</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/ipad.php'">
-                        <img src="../assets/img/ipad.webp" alt="iPad" height="200px" width="200px">
-                        <span>iPad</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/earbuds.php'">
-                        <img src="../assets/img/airpods.webp" alt="AirPods" height="200px" width="200px">
-                        <span>Earbuds</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/applewatch.php'">
-                        <img src="../assets/img/apple_watch.webp" alt="Apple Watch" height="200px" width="200px">
-                        <span>Apple Watch</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/iphones.php'">
-                        <img src="../assets/img/iphones.webp" alt="iPhones" height="200px" width="200px">
-                        <span>iPhones</span>
-                    </button>
-
-                    <button class="product-btn" onclick="window.location.href='product_categories/mac.php'">
-                        <img src="../assets/img/macbook.webp" alt="MacBook" height="200px" width="200px">
-                        <span>Mac</span>
-                    </button>
+                            echo '<button class="product-btn" onclick="window.location.href=\'product_category.php?category=' . urlencode($category_name) . '\'">';
+                            echo '<img src="/ecommerce/'.$image_path.'" alt="' . $category_name . '" height="200px" width="200px">';
+                            echo '<span>' . $category_name . '</span>';
+                            echo '</button>';
+                        }
+                    ?>
+                    
                 </div>
             </div>
         <?php
