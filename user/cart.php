@@ -1,258 +1,176 @@
 <?php
-    session_start();
-    require_once '../database/database.php';
-    $dataconn = new database();
-    $conn = $dataconn->getConnection();
-    
-    // Initialize cart if it doesn't exist
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
-    }
-    
-    // Handle cart actions
+require_once '../src/cart_functions.php';
+
+// Handle cart actions
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
-        $action = $_POST['action'];
-        
-        if ($action == 'update') {
-            // Update quantity
-            $productId = $_POST['product_id'];
-            $quantity = $_POST['quantity'];
-            
-            foreach ($_SESSION['cart'] as &$item) {
-                if ($item['product_id'] == $productId) {
-                    $item['quantity'] = $quantity;
-                    break;
-                }
-            }
-        } 
-        else if ($action == 'remove') {
+        if ($_POST['action'] === 'remove') {
             // Remove item from cart
-            $productId = $_POST['product_id'];
+            $product_id = $_POST['product_id'];
+            removeFromCart($product_id);
             
-            foreach ($_SESSION['cart'] as $key => $item) {
-                if ($item['product_id'] == $productId) {
-                    unset($_SESSION['cart'][$key]);
-                    break;
+            // Redirect to avoid form resubmission
+            header("Location: cart.php?removed=1");
+            exit;
+        } elseif ($_POST['action'] === 'checkout') {
+            // Process checkout for selected items
+            if (isset($_POST['selected_items']) && is_array($_POST['selected_items'])) {
+                $selectedItems = $_POST['selected_items'];
+                $quantities = $_POST['quantity'];
+                
+                // Create a temporary cart with only selected items
+                $checkoutItems = [];
+                $cartItems = getCartItems();
+                
+                foreach ($cartItems as $item) {
+                    if (in_array($item['product_id'], $selectedItems)) {
+                        $item['quantity'] = $quantities[$item['product_id']];
+                        $checkoutItems[] = $item;
+                    }
                 }
+                
+                // Store selected items in session for checkout
+                $_SESSION['checkout_items'] = $checkoutItems;
+                
+                // Redirect to billing page instead of checkout
+                header("Location: billing.php");
+                exit;
+            } else {
+                // No items selected, redirect back with error
+                header("Location: cart.php?error=no_items_selected");
+                exit;
             }
-            // Reindex the array
-            $_SESSION['cart'] = array_values($_SESSION['cart']);
+        } elseif ($_POST['action'] === 'update_quantity') {
+            // Update quantity for a specific item
+            $product_id = $_POST['product_id'];
+            $quantity = intval($_POST['quantity']);
+            
+            if ($quantity > 0) {
+                updateCartItemQuantity($product_id, $quantity);
+            }
+            
+            // Redirect to avoid form resubmission
+            header("Location: cart.php?updated=1");
+            exit;
         }
-        else if ($action == 'clear') {
-            // Clear the entire cart
-            $_SESSION['cart'] = array();
-        }
-        
-        // Redirect to prevent form resubmission
-        header("Location: cart.php");
-        exit;
     }
-    
-    // Calculate cart totals
-    $subtotal = 0;
-    foreach ($_SESSION['cart'] as $item) {
-        $subtotal += $item['price'] * $item['quantity'];
-    }
-    
-    // Apply tax (e.g., 10%)
-    $tax = $subtotal * 0.10;
-    $total = $subtotal + $tax;
+}
+
+// Get cart items
+$cartItems = getCartItems();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroGadgets - Shopping Cart</title>
+    <title>Shopping Cart - ElectroGadgets</title>
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .cart-container {
-            width: 100%;
-            padding: 20px;
-        }
-        
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        
-        .cart-table th, .cart-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .cart-table th {
-            background-color: #f2f2f2;
-        }
-        
-        .cart-image {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-        }
-        
-        .quantity-input {
-            width: 60px;
-            padding: 5px;
-        }
-        
-        .cart-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .cart-summary {
-            width: 300px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            margin-top: 20px;
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .checkout-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .checkout-btn:hover {
-            background-color: #45a049;
-        }
-        
-        .continue-shopping {
-            background-color: #2196F3;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .continue-shopping:hover {
-            background-color: #0b7dda;
-        }
-        
-        .remove-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .remove-btn:hover {
-            background-color: #d32f2f;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            padding: 50px 0;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container">
         <?php include '../components/sidebar.php'; ?>
         <div class="rightside">
             <?php include '../components/header.php'; ?>
-
             <div class="main-content">
-                <h1>Shopping Cart</h1>
+                <h1 class="page-title">Shopping Cart</h1>
+                
+                <?php if (isset($_GET['error']) && $_GET['error'] == 'no_items_selected'): ?>
+                <div class="error-message">
+                    <i class='bx bx-error-circle'></i> Please select at least one item to checkout.
+                </div>
+                <?php endif; ?>
+                
+                <?php if (isset($_GET['removed']) && $_GET['removed'] == 1): ?>
+                <div class="alert alert-success">
+                    <span class="close-btn" onclick="this.parentElement.style.display='none';">×</span>
+                    Item removed from cart successfully!
+                </div>
+                <?php endif; ?>
+                
+                <?php if (isset($_GET['updated']) && $_GET['updated'] == 1): ?>
+                <div class="alert alert-info">
+                    <span class="close-btn" onclick="this.parentElement.style.display='none';">×</span>
+                    Cart updated successfully!
+                </div>
+                <?php endif; ?>
                 
                 <div class="cart-container">
-                    <?php if (empty($_SESSION['cart'])): ?>
+                    <?php if (empty($cartItems)): ?>
                         <div class="empty-cart">
-                            <h2>Your cart is empty</h2>
-                            <p>Looks like you haven't added any products to your cart yet.</p>
-                            <a href="products.php" class="continue-shopping">Continue Shopping</a>
+                            <i class='bx bx-cart'></i>
+                            <p>Your cart is empty.</p>
+                            <a href="products.php" class="blue-btn">Continue Shopping</a>
                         </div>
                     <?php else: ?>
-                        <table class="cart-table">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($_SESSION['cart'] as $item): ?>
+                        <form action="cart.php" method="post" id="cartForm">
+                            <table class="cart-table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <div style="display: flex; align-items: center;">
-                                                <img src="/ecommerce/<?php echo $item['image']; ?>" alt="<?php echo $item['product_name']; ?>" class="cart-image">
-                                                <span style="margin-left: 10px;"><?php echo $item['product_name']; ?></span>
-                                            </div>
-                                        </td>
-                                        <td>₱<?php echo number_format($item['price'], 2); ?></td>
-                                        <td>
-                                            <form method="post" style="display: flex; align-items: center;">
-                                                <input type="hidden" name="action" value="update">
-                                                <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                                <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" class="quantity-input">
-                                                <button type="submit" style="margin-left: 5px; background-color: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Update</button>
-                                            </form>
-                                        </td>
-                                        <td>₱<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
-                                        <td>
-                                            <form method="post">
-                                                <input type="hidden" name="action" value="remove">
-                                                <input type="hidden" name="product_id" value="<?php echo $item['product_id']; ?>">
-                                                <button type="submit" class="remove-btn">Remove</button>
-                                            </form>
-                                        </td>
+                                        <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()"></th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th>Actions</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                        
-                        <div class="cart-actions">
-                            <a href="products.php" class="continue-shopping">Continue Shopping</a>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($cartItems as $item): ?>
+                                        <tr class="cart-item" data-price="<?php echo $item['price']; ?>" data-id="<?php echo $item['product_id']; ?>">
+                                            <td>
+                                                <input type="checkbox" name="selected_items[]" value="<?php echo $item['product_id']; ?>" class="item-checkbox" onchange="updateTotal()">
+                                            </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <img src="/ecommerce/<?php echo $item['image']; ?>" alt="<?php echo $item['product_name']; ?>" class="cart-image">
+                                                    <div class="product-details">
+                                                        <a href="product_details.php?id=<?php echo $item['product_id']; ?>" class="product-name"><?php echo $item['product_name']; ?></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="item-price">₱<?php echo number_format($item['price'], 2); ?></td>
+                                            <td>
+                                                <div class="quantity-control">
+                                                    <input type="number" name="quantity[<?php echo $item['product_id']; ?>]" value="<?php echo $item['quantity']; ?>" min="1" max="<?php echo $item['stocks']; ?>" class="quantity-input" onchange="updateSubtotal(this)">
+                                                </div>
+                                            </td>
+                                            <td class="item-subtotal">₱<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
+                                            <td>
+                                                <!-- Direct remove button - no checkbox needed -->
+                                                <button type="button" class="red-btn" onclick="removeItem(<?php echo $item['product_id']; ?>)">Remove</button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                             
-                            <form method="post">
-                                <input type="hidden" name="action" value="clear">
-                                <button type="submit" style="background-color: #f44336; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Clear Cart</button>
-                            </form>
-                        </div>
+                            <div class="cart-total">
+                                Total: <span id="cartTotal">₱0.00</span>
+                            </div>
+                            
+                            <div class="cart-actions">
+                                <a href="products.php" class="blue-btn">Continue Shopping</a>
+                                <input type="hidden" name="action" value="checkout">
+                                <button type="submit" class="green-btn">Proceed to Checkout</button>
+                            </div>
+                        </form>
                         
-                        <div class="cart-summary">
-                            <h3>Order Summary</h3>
-                            <div class="summary-row">
-                                <span>Subtotal:</span>
-                                <span>₱<?php echo number_format($subtotal, 2); ?></span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Tax (10%):</span>
-                                <span>₱<?php echo number_format($tax, 2); ?></span>
-                            </div>
-                            <div class="summary-row" style="font-weight: bold; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
-                                <span>Total:</span>
-                                <span>₱<?php echo number_format($total, 2); ?></span>
-                            </div>
-                            <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
-                        </div>
+                        <!-- Hidden form for removing items -->
+                        <form id="removeForm" action="cart.php" method="post" style="display: none;">
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" id="remove_product_id" name="product_id" value="">
+                        </form>
+                        
+                        <!-- Hidden form for updating quantities -->
+                        <form id="updateForm" action="cart.php" method="post" style="display: none;">
+                            <input type="hidden" name="action" value="update_quantity">
+                            <input type="hidden" id="update_product_id" name="product_id" value="">
+                            <input type="hidden" id="update_quantity" name="quantity" value="">
+                        </form>
                     <?php endif; ?>
                 </div>
             </div>
@@ -260,5 +178,110 @@
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/ecommerce/components/Footer.php'; ?>
         </div>
     </div>
+
+    <style>
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .alert-success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .alert-info {
+            background-color: #2196F3;
+            color: white;
+        }
+        .close-btn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+    <script>
+        // Function to format number with commas for thousands
+        function formatNumber(number) {
+            return number.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+        
+        // Function to update subtotal when quantity changes
+        function updateSubtotal(quantityInput) {
+            const row = quantityInput.closest('tr');
+            const price = parseFloat(row.dataset.price);
+            const quantity = parseInt(quantityInput.value);
+            const subtotal = price * quantity;
+            
+            // Update the subtotal display with formatted number
+            const subtotalCell = row.querySelector('.item-subtotal');
+            subtotalCell.textContent = '₱' + formatNumber(subtotal);
+            
+            // Update the quantity in the database
+            const productId = row.dataset.id;
+            document.getElementById('update_product_id').value = productId;
+            document.getElementById('update_quantity').value = quantity;
+            document.getElementById('updateForm').submit();
+            
+            // Update the total
+            updateTotal();
+        }
+        
+        // Function to update the total based on checked items
+        function updateTotal() {
+            let total = 0;
+            const rows = document.querySelectorAll('.cart-item');
+            
+            rows.forEach(row => {
+                const checkbox = row.querySelector('.item-checkbox');
+                if (checkbox.checked) {
+                    const price = parseFloat(row.dataset.price);
+                    const quantity = parseInt(row.querySelector('.quantity-input').value);
+                    total += price * quantity;
+                }
+            });
+            
+            // Update the total display with formatted number
+            document.getElementById('cartTotal').textContent = '₱' + formatNumber(total);
+        }
+        
+        // Function to toggle all checkboxes
+        function toggleAllCheckboxes() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+            
+            updateTotal();
+        }
+        
+        // Function to remove an item directly
+        function removeItem(productId) {
+            if (confirm('Are you sure you want to remove this item from your cart?')) {
+                document.getElementById('remove_product_id').value = productId;
+                document.getElementById('removeForm').submit();
+            }
+        }
+        
+        // Initialize the total on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+        });
+    </script>
 </body>
 </html>

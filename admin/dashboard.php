@@ -11,16 +11,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li><a href="dashboard.php"><i class='bx bx-grid-alt'></i><span>Dashboard</span></a></li>
-                <li><a href="products.php"><i class='bx bx-box'></i><span>Products</span></a></li>
-                <li><a href="reports.php"><i class='bx bx-line-chart'></i><span>Reports</span></a></li>
-                <li><a href="../user/home.php"><i class='bx bx-log-out'></i><span>Logout</span></a></li>
-            </ul>
-        </div>
+        <?php include '../components/admin_sidebar.php'; ?>
         <div class="rightside">
-            <?php include '../components/header.php'; ?>
+            <?php include '../components/admin_header.php'; ?>
 
             <div class="main-content">
                 <div class="welcome-banner">
