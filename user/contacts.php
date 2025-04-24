@@ -45,30 +45,6 @@
                         </div>
                     </div>
                     <div class="contact-flex">
-                        <div class="login-form">
-                            <h3>Send us a message</h3>
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" placeholder="Your Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <select>
-                                        <option value="">Select Topic</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="sales">Sales Inquiry</option>
-                                        <option value="feedback">Feedback</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="login-btn">Send Message</button>
-                            </form>
-                        </div>
-
                         <div class="services-list">
                             <h3>Business Hours</h3>
                             <ul>

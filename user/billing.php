@@ -1,46 +1,140 @@
 <?php
+session_start();
 require_once '../src/cart_functions.php';
 
 // Check if checkout items exist in session
 if (!isset($_SESSION['checkout_items']) || empty($_SESSION['checkout_items'])) {
-    // Redirect to cart if no items are selected for checkout
-    header("Location: cart.php?error=no_checkout_items");
+    header("Location: cart.php?error=no_items_selected");
     exit;
 }
 
-// Calculate total from checkout items
 $checkoutItems = $_SESSION['checkout_items'];
-$totalAmount = 0;
+$total = 0;
 foreach ($checkoutItems as $item) {
-    $totalAmount += $item['price'] * $item['quantity'];
+    $total += $item['price'] * $item['quantity'];
 }
 
-// Handle form submission
+// Process the order when form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process billing information
-    // You would typically validate and store this information in a database
+    // Collect customer information
+    $firstname = $_POST['firstname'] ?? '';
+    $lastname = $_POST['lastname'] ?? '';
+    $suffix = $_POST['suffix'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $country = $_POST['country'] ?? '';
+    $zip = $_POST['zip'] ?? '';
+    $transaction_num = $_POST['transaction_num'] ?? '';
+    $cardtype = $_POST['cardtype'] ?? '';
+    $cardnumber = $_POST['cardnumber'] ?? '';
+    $expdate = $_POST['expdate'] ?? '';
     
-    // For now, just store in session and redirect to delivery_date.php
-    $_SESSION['billing_info'] = [
-        'firstname' => $_POST['firstname'],
-        'lastname' => $_POST['lastname'],
-        'suffix' => $_POST['suffix'],
-        'email' => $_POST['email'],
-        'phone' => $_POST['phone'],
-        'country' => $_POST['country'],
-        'address' => $_POST['address'],
-        'zip' => $_POST['zip'],
-        'payment_method' => $_POST['payment_method'],
-        'cardtype' => isset($_POST['cardtype']) ? $_POST['cardtype'] : '',
-        'cardnumber' => isset($_POST['cardnumber']) ? $_POST['cardnumber'] : '',
-        'expdate' => isset($_POST['expdate']) ? $_POST['expdate'] : '',
-        'total_amount' => $totalAmount
-    ];
+    // Validate required fields
+    $errors = [];
+    if (empty($firstname)) $errors[] = "First name is required";
+    if (empty($lastname)) $errors[] = "Last name is required";
+    if (empty($email)) $errors[] = "Email is required";
+    if (empty($phone)) $errors[] = "Phone is required";
+    if (empty($address)) $errors[] = "Address is required";
+    if (empty($country)) $errors[] = "Country is required";
+    if (empty($zip)) $errors[] = "ZIP code is required";
+    if (empty($cardtype)) $errors[] = "Card type is required";
+    if (empty($cardnumber)) $errors[] = "Card number is required";
+    if (empty($expdate)) $errors[] = "Expiration date is required";
     
-    header("Location: delivery_date.php");
-    exit;
-}
-?>
+    // If no errors, process the order
+    if (empty($errors)) {
+        // Database connection
+        $conn = new mysqli("localhost", "root", "", "electrogadgets");
+        
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        // Start transaction
+        $conn->begin_transaction();
+        
+        try {
+            // Insert customer data
+            $stmt = $conn->prepare("INSERT INTO customers (firstname, lastname, suffix, email, phone, address, country, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $firstname, $lastname, $suffix, $email, $phone, $address, $country, $zip);
+            $stmt->execute();
+            $customer_id = $conn->insert_id;
+            
+            // Generate a unique order number
+            $order_number = 'ORD-' . time() . '-' . rand(1000, 9999);
+            
+            // Insert order data
+            $stmt = $conn->prepare("INSERT INTO orders (order_number, customer_id, total_amount, order_date, status) VALUES (?, ?, ?, NOW(), 'pending')");
+            $stmt->bind_param("sid", $order_number, $customer_id, $total);
+            $stmt->execute();
+            $order_id = $conn->insert_id;
+            
+            // Insert order items
+            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+            
+            foreach ($checkoutItems as $item) {
+                $product_id = $item['product_id'];
+                $quantity = $item['quantity'];
+                $price = $item['price'];
+                $stmt->bind_param("iiid", $order_id, $product_id, $quantity, $price);
+                $stmt->execute();
+                
+                // Update product stock
+                $update_stock = $conn->prepare("UPDATE products SET stocks = stocks - ? WHERE product_id = ?");
+                $update_stock->bind_param("ii", $quantity, $product_id);
+                $update_stock->execute();
+            }
+            
+            // Insert payment details
+            $masked_card = substr(str_replace(' ', '', $cardnumber), -4);
+            $masked_card = "XXXX-XXXX-XXXX-" . $masked_card;
+            
+            $stmt = $conn->prepare("INSERT INTO payment_details (order_id, transaction_number, card_type, card_number, expiration_date) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("issss", $order_id, $transaction_num, $cardtype, $masked_card, $expdate);
+            $stmt->execute();
+            
+            // Insert delivery info (default values)
+            $stmt = $conn->prepare("INSERT INTO delivery_info (order_id, delivery_status) VALUES (?, 'pending')");
+            $stmt->bind_param("i", $order_id);
+            $stmt->execute();
+            
+            // Commit transaction
+            $conn->commit();
+            
+            // Store order information in session
+            $_SESSION['order'] = [
+                'order_id' => $order_id,
+                'order_number' => $order_number,
+                'customer' => [
+                    'name' => $firstname . ' ' . $lastname,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'address' => $address
+                ],
+                'payment_method' => $cardtype,
+                'items' => $checkoutItems,
+                'total' => $total,
+                'date' => date('Y-m-d H:i:s')
+            ];
+            
+            // Clear the cart after successful order
+            clearCart();
+            
+            header("Location: delivery_date.php");
+            exit;
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            $conn->rollback();
+            $errors[] = "Database error: " . $e->getMessage();
+        }
+        
+        // Close connection
+        $conn->close();
+    }
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,11 +186,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <div class="order-total">
+                        <div class="order-total">
                         <div>Total</div>
-                        <div>₱<?php echo number_format($totalAmount, 2); ?></div>
+                        <div>₱<?php echo number_format($total, 2); ?></div>
                     </div>
-                </div>
+                    </div>
+
 
                 <form action="billing.php" method="post" id="billingForm">
                     <div class="billing-form">
@@ -131,10 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label for="phone">Phone Number:</label>
                                 <input type="tel" id="phone" name="phone" placeholder="09123456789" required>
                             </div>
-                            <div class="form-group">
-                                <label for="zip">ZIP/Postal Code:</label>
-                                <input type="text" id="zip" name="zip" placeholder="1234" required>
-                            </div>
+                            
                         </div>
                         <!-- Section 2: Location Information -->
                         <div class="billing-section">
@@ -301,13 +393,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h3 class="section-title">Payment Information</h3>
                             <div class="form-group">
                                 <label for="transaction_num">Transaction Number:</label>
-                                <input type="text" id="transaction_num" name="transaction_num" value="">
+                                <input type="text" id="transaction_num" name="transaction_num" value="<?php echo 'TXN-'.time().'-'.rand(1000,9999); ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="total">Total Purchase:</label>
-                                <input type="text" id="total" name="total" value="">
-                            </div>
-                            <div class="form-group">
+                                <input type="text" id="total" name="total" value="₱<?php echo number_format($total, 2); ?>" readonly>
+                            </div>                            <div class="form-group">
                                 <label for="cardtype">Card Type:</label>
                                 <select id="cardtype" name="cardtype" required>
                                     <option value="">Select a card type</option>
