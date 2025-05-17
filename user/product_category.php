@@ -131,8 +131,8 @@
         });
 
         // Add filter animation
-        let filterButtons = $('<div class="filter-buttons"></div>');
-        filterButtons.append('<button class="filter-btn active" data-filter="all">All</button>');
+        // let filterButtons = $('<div class="filter-buttons"></div>');
+        // filterButtons.append('<button class="filter-btn active" data-filter="all">All</button>');
         
         // Get unique product names first words to create filter categories
         let categories = [];
@@ -145,9 +145,9 @@
         });
         
         // Add filter buttons
-        categories.forEach(function(cat) {
-            filterButtons.append('<button class="filter-btn" data-filter="' + cat.toLowerCase() + '">' + cat + '</button>');
-        });
+        //categories.forEach(function(cat) {
+        //    filterButtons.append('<button class="filter-btn" data-filter="' + cat.toLowerCase() + '">' + cat + '</button>');
+        //});
         
         // Insert filter buttons before products
         $(".products-category").before(filterButtons);

@@ -15,11 +15,13 @@ body {
     background: #2c3e50;
     transition: width 0.3s ease-in-out;
     overflow: hidden;
+    z-index: 9999 !important; /* Increased from 1000 to 9999 */
 }
 
 .sidebar:hover {
     width: 200px;
 }
+
 
 .sidebar ul{
     list-style-type: none;

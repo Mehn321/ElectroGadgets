@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 // Include the database connection class
 require_once '../database/database.php';
 

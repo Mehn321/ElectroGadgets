@@ -21,7 +21,7 @@ if ($productResult) {
 }
 
 // Get total orders count
-$orderQuery = "SELECT COUNT(*) as total_orders FROM orders";
+$orderQuery = "SELECT COUNT(*) as total_orders FROM order_items";
 $orderResult = $conn->query($orderQuery);
 if ($orderResult) {
     $orderRow = $orderResult->fetch_assoc();
