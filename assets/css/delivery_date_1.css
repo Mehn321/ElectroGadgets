@@ -1,0 +1,7 @@
+/* Extracted from user\delivery_date.php */
+.height {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }

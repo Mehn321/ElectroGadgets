@@ -88,69 +88,7 @@
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-        <style>
-        .alert {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .alert-success {
-            background-color: #4CAF50;
-        }
-        .close-btn {
-            margin-left: 15px;
-            color: white;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-        }
-        
-        /* Animation styles */
-        .flying-image {
-            position: absolute;
-            z-index: 9999;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            pointer-events: none;
-        }
-        
-        @keyframes cartBounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-        
-        .cart-bounce {
-            animation: cartBounce 0.5s ease;
-        }
-        
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: #ff4757;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-        }
-        
-        .cart-badge.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-    </style>
+        <link rel="stylesheet" href="/ecommerce/assets/css/product_details_1.css">
 </head>
 <body>
     <div class="container">
@@ -205,77 +143,6 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Add to cart animation
-            $('#addToCartBtn').on('click', function(e) {
-                e.preventDefault(); // Prevent the default form submission
-                
-                // Get positions
-                var imgElement = $('#productImage');
-                var cartIcon = $('.cart-icon');
-                
-                if (imgElement.length && cartIcon.length) {
-                    // Create a clone of the image at its current position
-                    var imgClone = imgElement.clone()
-                        .removeClass()
-                        .addClass('flying-image')
-                        .css({
-                            'position': 'fixed', // Use fixed positioning
-                            'top': imgElement.offset().top - $(window).scrollTop(), // Adjust for scroll position
-                            'left': imgElement.offset().left,
-                            'width': imgElement.width(),
-                            'height': imgElement.height(),
-                            'opacity': 0.75,
-                            'z-index': 1000
-                        })
-                        .appendTo('body');
-                    
-                    // First scroll to top to make the header/cart visible
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 400, function() {
-                        // After scrolling, get the new cart position
-                        var cartPosition = {
-                            top: cartIcon.offset().top - $(window).scrollTop(), // Adjust for new scroll position
-                            left: cartIcon.offset().left
-                        };
-                        
-                        // Now animate the clone to the cart with longer duration
-                        imgClone.animate({
-                            top: cartPosition.top,
-                            left: cartPosition.left,
-                            width: 30,
-                            height: 30,
-                            opacity: 0.5
-                        }, {
-                            duration: 1000, // Increased from 800 to 1000ms
-                            complete: function() {
-                                // Add bounce effect to cart icon
-                                cartIcon.addClass('cart-bounce');
-                                
-                                // Remove the clone
-                                $(this).remove();
-                                
-                                // Remove bounce class after animation completes
-                                // Increased delay from 500ms to 1000ms
-                                setTimeout(function() {
-                                    cartIcon.removeClass('cart-bounce');
-                                    
-                                    // Add the hidden input for add_to_cart action and submit the form
-                                    $('#purchaseForm').append('<input type="hidden" name="action" value="add_to_cart">');
-                                    $('#purchaseForm').submit();
-                                }, 1000); // Increased delay to ensure animation is visible
-                            }
-                        });
-                    });
-                } else {
-                    // If elements not found, just submit the form with add_to_cart action
-                    $('#purchaseForm').append('<input type="hidden" name="action" value="add_to_cart">');
-                    $('#purchaseForm').submit();
-                }
-            });
-        });
-        </script>
+    <script src="/ecommerce/assets/js/product_details_1.js"></script>
 </body>
 </html>

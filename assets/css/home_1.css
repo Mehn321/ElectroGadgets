@@ -1,0 +1,86 @@
+/* Extracted from user\home.php */
+.waveshow {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .waveshow img{
+            width: 1000px;
+        }
+        
+        /* Nivo Slider Custom Styles */
+        .slider-container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .nivoSlider {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nivo-caption {
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .nivo-controlNav {
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        .nivo-controlNav a {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            text-indent: -9999px;
+            border: 0;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        
+        .nivo-controlNav a.active {
+            background: #4299e1;
+        }
+        
+        .nivo-directionNav a {
+            position: absolute;
+            top: 45%;
+            z-index: 9;
+            cursor: pointer;
+            background: rgba(255,255,255,0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #333;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nivo-directionNav a:hover {
+            background: rgba(255,255,255,0.9);
+        }
+        
+        .nivo-prevNav {
+            left: 15px;
+        }
+        
+        .nivo-nextNav {
+            right: 15px;
+        }
+        
+        .nivo-html-caption {
+            display: none;
+        }

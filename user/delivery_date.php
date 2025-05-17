@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        .height {
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/ecommerce/assets/css/delivery_date_1.css">
 </head>
 <body>
     <div class="container">

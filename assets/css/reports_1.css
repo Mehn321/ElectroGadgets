@@ -1,0 +1,171 @@
+/* Extracted from admin\reports.php */
+.status-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .error-message {
+            background-color: #f44336;
+        }
+        
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .product-table th {
+            background-color: #4361ee;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .product-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: middle;
+        }
+        
+        .product-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .product-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .status-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+        
+        .status-select option {
+            padding: 8px;
+        }
+        
+        .status-pending {
+            background-color: #FFC107;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .status-processing {
+            background-color: #2196F3;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .status-shipped {
+            background-color: #9C27B0;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .status-delivered {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .status-cancelled {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .update-btn {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .update-btn:hover {
+            background-color: #3651d4;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            min-width: 150px;
+        }
+        
+        /* Style for merged cells */
+        .order-row {
+            background-color: #f9f9f9;
+        }
+        
+        .order-row td {
+            border-bottom: none;
+        }
+        
+        .product-row td {
+            border-top: none;
+            
+        }
+        
+        .order-info {
+            font-weight: bold;
+        }
+        
+        .order-header {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        
+        .order-header td {
+            padding: 15px 12px;
+        }

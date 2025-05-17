@@ -17,93 +17,7 @@
     
 
 
-    <style>
-        .waveshow {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .waveshow img{
-            width: 1000px;
-        }
-        
-        /* Nivo Slider Custom Styles */
-        .slider-container {
-            width: 80%;
-            max-width: 1000px;
-            margin: 30px auto;
-            position: relative;
-        }
-        
-        .nivoSlider {
-            position: relative;
-            width: 100%;
-            height: auto;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .nivo-caption {
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            padding: 15px;
-            font-size: 16px;
-        }
-        
-        .nivo-controlNav {
-            text-align: center;
-            padding: 15px 0;
-        }
-        
-        .nivo-controlNav a {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #ccc;
-            border-radius: 50%;
-            text-indent: -9999px;
-            border: 0;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        
-        .nivo-controlNav a.active {
-            background: #4299e1;
-        }
-        
-        .nivo-directionNav a {
-            position: absolute;
-            top: 45%;
-            z-index: 9;
-            cursor: pointer;
-            background: rgba(255,255,255,0.7);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: #333;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .nivo-directionNav a:hover {
-            background: rgba(255,255,255,0.9);
-        }
-        
-        .nivo-prevNav {
-            left: 15px;
-        }
-        
-        .nivo-nextNav {
-            right: 15px;
-        }
-        
-        .nivo-html-caption {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="/ecommerce/assets/css/home_1.css">
 
 </head>
 <body>
@@ -237,31 +151,6 @@
      
     <script src="../assets/js/jquery-1.10.2.min.js"></script>
     <script src="../assets/js/nivo-slider/jquery.nivo.slider.pack.js"></script>
-    <script type="text/javascript">
-        $(window).load(function() {
-            $('#slider').nivoSlider({
-                effect: 'fold',              // Specify sets like: 'fold,fade,sliceDown'
-                slices: 15,                    // For slice animations
-                boxCols: 8,                    // For box animations
-                boxRows: 4,                    // For box animations
-                animSpeed: 500,                // Slide transition speed
-                pauseTime: 3000,               // How long each slide will show
-                startSlide: 0,                 // Set starting Slide (0 index)
-                directionNav: false,            // Next & Prev navigation
-                controlNav: true,              // 1,2,3... navigation
-                controlNavThumbs: false,       // Use thumbnails for Control Nav
-                pauseOnHover: true,            // Stop animation while hovering
-                manualAdvance: false,          // Force manual transitions
-                prevText: 'Prev',              // Prev directionNav text
-                nextText: 'Next',              // Next directionNav text
-                randomStart: false,            // Start on a random slide
-                beforeChange: function(){},    // Triggers before a slide transition
-                afterChange: function(){},     // Triggers after a slide transition
-                slideshowEnd: function(){},    // Triggers after all slides have been shown
-                lastSlide: function(){},       // Triggers when last slide is shown
-                afterLoad: function(){}        // Triggers when slider has loaded
-            });
-        });
-    </script>
+    <script src="/ecommerce/assets/js/home_5.js"></script>
 </body>
 </html>
