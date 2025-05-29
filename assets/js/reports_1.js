@@ -86,3 +86,70 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial filter application (in case of page reload with values)
         filterTable();
     });
+            // Store item data in JavaScript for modal access
+        
+        // Function to show address modal
+        function showAddressModal(itemId) {
+            const modal = document.getElementById('addressModal');
+            const customerDetails = document.getElementById('customerDetails');
+            
+            if (itemData[itemId]) {
+                const item = itemData[itemId];
+                
+                // Create HTML content for order details
+                let detailsHTML = `
+                    <h3>Order #${item.order_number}</h3>
+                    <p><span class="detail-label">Name:</span> ${item.customer}</p>
+                    <p><span class="detail-label">Email:</span> ${item.email}</p>
+                    <p><span class="detail-label">Phone:</span> ${item.phone}</p>
+                    <p><span class="detail-label">Address:</span> ${item.address}</p>
+                    <p><span class="detail-label">Country:</span> ${item.country}</p>
+                    <p><span class="detail-label">ZIP Code:</span> ${item.zip}</p>
+                    <p><span class="detail-label">Order Date:</span> ${new Date(item.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}</p>
+                    <h3>Product Details</h3>
+                    <p><span class="detail-label">Product:</span> ${item.product_name}</p>
+                    <p><span class="detail-label">Quantity:</span> ${item.quantity}</p>
+                    <p><span class="detail-label">Price:</span> ₱${parseFloat(item.price).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p>
+                    <p><span class="detail-label">Total:</span> ₱${(parseFloat(item.price) * item.quantity).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p>
+
+                    <p><span class="detail-label">Status:</span> ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}</p>
+                `;
+                
+                customerDetails.innerHTML = detailsHTML;
+            } else {
+                customerDetails.innerHTML = '<p>Order details not found.</p>';
+            }
+            
+            modal.style.display = 'block';
+        }
+        
+        // Function to close address modal
+        function closeAddressModal() {
+            const modal = document.getElementById('addressModal');
+            modal.style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('addressModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAddressModal();
+            }
+        });

@@ -63,9 +63,12 @@ header{
 }
 
 .about-us {
+    
     margin: 40px 0;
     line-height: 1.8;
 }
+
+
 
 .service-highlights {
     display: flex;
@@ -1441,4 +1444,10 @@ admin products */
     .form-group {
         flex: 1 0 calc(100% - 30px);
     }
+}
+
+
+.align-money{
+    text-align: right;
+    vertical-align: middle;
 }

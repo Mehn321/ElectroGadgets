@@ -14,6 +14,9 @@ foreach ($checkoutItems as $item) {
     $total += $item['price'] * $item['quantity'];
 }
 
+// Generate transaction number
+$transaction_num = 'TXN-'.time().'-'.rand(1000,9999);
+
 // Process the order when form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect customer information
@@ -169,14 +172,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="step-number">3</div>
                         <div class="step-label">Delivery Date</div>
                     </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-label">Confirmation</div>
-                    </div>
+
                 </div>
                 
                 <div class="order-summary">
                     <h3>Order Summary</h3>
+                    <div class="transaction-info">
+                        <span>Transaction Number:</span>
+                        <span><?php echo $transaction_num; ?></span>
+                    </div>
                     <div class="order-items">
                         <?php foreach ($checkoutItems as $item): ?>
                             <div class="order-item">
@@ -234,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="form-group">
                                 <label for="country">Country:</label>
                                 <select id="country" name="country" required>
-                                    <option value="">Select a country</option>
+                                    <option value="Phillippines">Phillippines</option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Albania">Albania</option>
                                     <option value="Algeria">Algeria</option>
@@ -391,35 +395,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Section 3: Payment Information -->
                         <div class="billing-section">
                             <h3 class="section-title">Payment Information</h3>
-                            <div class="form-group">
-                                <label for="transaction_num">Transaction Number:</label>
-                                <input type="text" id="transaction_num" name="transaction_num" value="<?php echo 'TXN-'.time().'-'.rand(1000,9999); ?>" readonly>
+                            <div class="form-row">
+                                
+                                <div class="form-group">
+                                    <label for="total">Total Purchase:</label>
+                                    <input class="align-money" type="text" id="total" name="total" value="₱<?php echo number_format($total, 2); ?>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardtype">Card Type:</label>
+                                    <select id="cardtype" name="cardtype" required>
+                                        <option value="">Select a card type</option>
+                                        <option value="BDO">BDO</option>
+                                        <option value="BPI">BPI</option>
+                                        <option value="EastWest">EastWest</option>
+                                        <option value="Metrobank">Metrobank</option>
+                                        <option value="PNB">PNB</option>
+                                        <option value="RCBC">RCBC</option>
+                                        <option value="Security Bank">Security Bank</option>
+                                        <option value="UnionBank">UnionBank</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="total">Total Purchase:</label>
-                                <input type="text" id="total" name="total" value="₱<?php echo number_format($total, 2); ?>" readonly>
-                            </div>                            <div class="form-group">
-                                <label for="cardtype">Card Type:</label>
-                                <select id="cardtype" name="cardtype" required>
-                                    <option value="">Select a card type</option>
-                                    <option value="BDO">BDO</option>
-                                    <option value="BPI">BPI</option>
-                                    <option value="EastWest">EastWest</option>
-                                    <option value="Metrobank">Metrobank</option>
-                                    <option value="PNB">PNB</option>
-                                    <option value="RCBC">RCBC</option>
-                                    <option value="Security Bank">Security Bank</option>
-                                    <option value="UnionBank">UnionBank</option>
-                                </select>
+                            <div class="form-row">
+                                
+                                <div class="form-group">
+                                    <label for="cardnumber">Credit Card Number:</label>
+                                    <input type="text" id="cardnumber" name="cardnumber" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="expdate">Expiration Date:</label>
+                                    <input type="date" id="expdate" name="expdate" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cardnumber">Credit Card Number:</label>
-                                <input type="text" id="cardnumber" name="cardnumber" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="expdate">Expiration Date:</label>
-                                <input type="date" id="expdate" name="expdate" required>
-                            </div>
+                            
                         </div>
                     </div>
 

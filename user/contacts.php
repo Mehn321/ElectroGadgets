@@ -25,7 +25,7 @@
 
                 <div class="content-section">
                     <div class="about-us">
-                        <img src="../assets/img/nhem.jpg" alt="Nhem Day Aclo" width="200" class="profile-image">
+                        <img src="../assets/img/nhem.jpg" alt="Nhem Day Aclo" width="500" class="profile-image">
                         <h2>Nhem Day Aclo</h2>
                         <p>Lead Developer</p>
                     </div>

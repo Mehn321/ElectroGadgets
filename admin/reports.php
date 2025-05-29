@@ -42,9 +42,11 @@ if (isset($_POST['update_all_status']) && isset($_POST['order_id']) && isset($_P
     } else {
         $statusMessage = "Error updating products: " . $conn->error;
     }
-}// Fetch all order items with order, product, and customer details
+}
+
+// Fetch all order items with order, product, customer, and address details
 $ordersQuery = "SELECT o.order_id, o.order_number, o.order_date, o.total_amount,
-                c.firstname, c.lastname, 
+                c.firstname, c.lastname, c.address, c.country, c.zip, c.phone, c.email,
                 p.product_name, p.image_path, 
                 oi.order_item_id as item_id, oi.quantity, oi.price, oi.status
                 FROM orders o
@@ -76,6 +78,7 @@ try {
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="/ecommerce/assets/css/reports_1.css">
+
 </head>
 <body>
 <div class="container">
@@ -123,7 +126,7 @@ try {
                                 <th>Product</th>
                                 <th>Image</th>
                                 <th>Quantity</th>
-                                <th>Price</th>
+                                <th>Amount</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -132,6 +135,7 @@ try {
                             <?php 
                             $currentOrderId = null;
                             $orderData = [];
+                            $itemData = [];
                             
                             // First, group items by order
                             while ($row = $result->fetch_assoc()) {
@@ -141,6 +145,11 @@ try {
                                         'customer' => $row['firstname'] . ' ' . $row['lastname'],
                                         'date' => $row['order_date'],
                                         'total_amount' => $row['total_amount'],
+                                        'address' => $row['address'],
+                                        'country' => $row['country'],
+                                        'zip' => $row['zip'],
+                                        'phone' => $row['phone'],
+                                        'email' => $row['email'],
                                         'items' => []
                                     ];
                                 }
@@ -153,36 +162,28 @@ try {
                                     'price' => $row['price'],
                                     'status' => $row['status']
                                 ];
+                                
+                                // Store individual item data for modal
+                                $itemData[$row['item_id']] = [
+                                    'order_id' => $row['order_id'],
+                                    'order_number' => $row['order_number'],
+                                    'customer' => $row['firstname'] . ' ' . $row['lastname'],
+                                    'date' => $row['order_date'],
+                                    'address' => $row['address'],
+                                    'country' => $row['country'],
+                                    'zip' => $row['zip'],
+                                    'phone' => $row['phone'],
+                                    'email' => $row['email'],
+                                    'product_name' => $row['product_name'],
+                                    'quantity' => $row['quantity'],
+                                    'price' => $row['price'],
+                                    'status' => $row['status']
+                                ];
                             }
                             
                             // Now display the data with order headers
                             foreach ($orderData as $orderId => $order):
                             ?>
-                                <!-- Order header row -->
-                                
-                                <!-- <tr class="order-header" data-order-id="<?php echo $orderId; ?>">
-                                    <td colspan="9">
-                                        Order #<?php echo $order['order_number']; ?> - 
-                                        <?php echo $order['customer']; ?> - 
-                                        <?php echo date('M d, Y', strtotime($order['date'])); ?> - 
-                                        Total: ₱<?php echo number_format($order['total_amount'], 2); ?>
-                                        
-                                        
-                                        <form method="post" action="" style="display: inline-block; margin-left: 15px;">
-                                            <input type="hidden" name="order_id" value="<?php echo $orderId; ?>">
-                                            <input type="hidden" name="bulk_update" value="1">
-                                            <select name="status" class="status-select" style="width: auto; margin-right: 5px;">
-                                                <option value="pending">Pending</option>
-                                                <option value="processing">Processing</option>
-                                                <option value="shipped">Shipped</option>
-                                                <option value="delivered">Delivered</option>
-                                                <option value="cancelled">Cancelled</option>
-                                            </select>
-                                            <button type="submit" name="update_all_status" class="update-btn">Update All Items</button>
-                                        </form>
-                                    </td>
-                                </tr> -->
-                                
                                 <!-- Product rows -->
                                 <?php foreach ($order['items'] as $item): ?>
                                     <tr class="product-row" data-order-id="<?php echo $orderId; ?>">
@@ -194,7 +195,7 @@ try {
                                             <img src="../<?php echo $item['image_path']; ?>" class="product-image" alt="Product">
                                         </td>
                                         <td><?php echo $item['quantity']; ?></td>
-                                        <td>₱<?php echo number_format($item['price'], 2); ?></td>
+                                        <td>₱<?php echo number_format($item['price']*$item['quantity'], 2); ?></td>
                                         <td>
                                             <span class="status-<?php echo $item['status']; ?>">
                                                 <?php echo ucfirst($item['status']); ?>
@@ -210,7 +211,10 @@ try {
                                                     <option value="delivered" <?php echo $item['status'] == 'delivered' ? 'selected' : ''; ?>>Delivered</option>
                                                     <option value="cancelled" <?php echo $item['status'] == 'cancelled' ? 'selected' : ''; ?>>Cancelled</option>
                                                 </select>
-                                                <button type="submit" name="update_status" class="update-btn">Update</button>
+                                                <div class="button-group">
+                                                    <button type="submit" name="update_status" class="update-btn">Update</button>
+                                                    <button type="button" class="update-btn" onclick="showAddressModal('<?php echo $item['item_id']; ?>')">Details</button>
+                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -218,6 +222,18 @@ try {
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    
+                    <!-- Address Modal -->
+                    <div id="addressModal" class="address-modal">
+                        <div class="address-modal-content">
+                            <span class="close-modal" onclick="closeAddressModal()">&times;</span>
+                            <h2>Order Details</h2>
+                            <div id="customerDetails" class="customer-details">
+                                <!-- Customer details will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
                 <?php else: ?>
                     <div class="empty-state">
                         <i class='bx bx-package'></i>
@@ -240,6 +256,11 @@ try {
         ?>
     </div>
 </div>
+    <script>
+        // Store item data in JavaScript for modal access
+        const itemData = <?php echo json_encode($itemData ?? []); ?>;
+    </script>
     <script src="/ecommerce/assets/js/reports_1.js"></script>
+    
 </body>
 </html>

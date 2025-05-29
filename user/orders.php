@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <link rel="stylesheet" href="../assets/css/sidebar.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/price.css">
 </head>
 <body>
     <div class="container">
@@ -64,17 +65,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                                     <td align="center">
                                         <?php echo $item['quantity']; ?>
                                     </td>
-                                    <td>
-                                        ₱ <?php echo number_format($item['price'], 2); ?>
+                                    <td class="price-cell"> 
+                                        <p>₱ <?php echo number_format($item['price'], 2); ?></p>
                                     </td>
-                                    <td>
+                                    <td class="price-cell">
                                         ₱ <?php echo number_format($subtotal, 2); ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
                                     <td colspan="3"><strong>Total</strong></td>
-                                    <td id="total">₱ <?php echo number_format($total, 2); ?></td>
+                                    <td id="total" class="price-cell">₱ <?php echo number_format($total, 2); ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" align="center">

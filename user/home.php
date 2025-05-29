@@ -36,7 +36,7 @@
             <div class="slider-container">
                 <div id="slider" class="nivoSlider">
                     <img src="../assets/img/elega1.webp" height="500px" data-thumb="../assets/img/elega1.webp" alt="ElectroGadgets Product 1" />
-                    <img src="../assets/img/elega2.webp" height="500px" data-thumb="../assets/img/elega2.webp" alt="ElectroGadgets Product 2" title="Latest Electronics and Gadgets" />
+                    <img src="../assets/img/elega5.jpeg" height="500px" data-thumb="../assets/img/elega5.jpeg" alt="ElectroGadgets Product 2" title="Latest Electronics and Gadgets" />
                     <img src="../assets/img/elega3.webp" height="500px" data-thumb="../assets/img/elega3.webp" alt="ElectroGadgets Product 3" title="#htmlcaption" />
                     <img src="../assets/img/elega4.webp" height="500px" data-thumb="../assets/img/elega4.webp" alt="ElectroGadgets Product 4" title="#htmlcaption" />
                 </div>
